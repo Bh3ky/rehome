@@ -80,7 +80,7 @@ export default function Header() {
 
       <nav
         aria-label="Main"
-        className={`transition-colors duration-300 ${
+        className={`transition-colors duration-300 [body:has([data-dark-top])_&]:bg-white ${
           solid ? "bg-white shadow-[0_1px_0_rgba(0,0,0,0.06)]" : "bg-transparent"
         }`}
       >
