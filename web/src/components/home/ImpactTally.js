@@ -6,7 +6,7 @@ export default function ImpactTally() {
   return (
     <section className="section-pad bg-white">
       <div className="site-container">
-        <div className="mx-auto max-w-[1432px] rounded-[24px] bg-green px-6 py-16 text-white md:px-16 lg:flex lg:h-[620px] lg:items-center lg:py-0">
+        <div className="rounded-[24px] bg-green px-6 py-16 text-white md:px-16 lg:flex lg:h-[620px] lg:items-center lg:py-0">
           <div className="grid w-full gap-10 lg:grid-cols-[5fr_7fr] lg:gap-12">
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.2em] text-white/70">

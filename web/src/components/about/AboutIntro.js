@@ -6,7 +6,7 @@ export default function AboutIntro() {
   return (
     <section className="section-pad bg-white">
       <div className="site-container mt-24 md:mt-20">
-        <div className="mx-auto max-w-[1344px]">
+        <div>
           <div className="aspect-[4/3] overflow-hidden rounded-xl bg-surface md:aspect-auto md:h-[558px]">
             <img
               src={HERO_IMAGE}

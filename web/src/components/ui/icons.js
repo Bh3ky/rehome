@@ -29,6 +29,32 @@ export const MapPin = (props) => (
   </svg>
 );
 
+export const Play = (props) => (
+  <svg {...base} {...props}>
+    <path d="M7 5v14l12-7Z" />
+  </svg>
+);
+
+export const Pause = (props) => (
+  <svg {...base} {...props}>
+    <path d="M8 5v14M16 5v14" />
+  </svg>
+);
+
+export const Volume = (props) => (
+  <svg {...base} {...props}>
+    <path d="M4 9v6h4l5 4V5L8 9Z" />
+    <path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11" />
+  </svg>
+);
+
+export const VolumeOff = (props) => (
+  <svg {...base} {...props}>
+    <path d="M4 9v6h4l5 4V5L8 9Z" />
+    <path d="m17 9 5 6M22 9l-5 6" />
+  </svg>
+);
+
 export const Plus = (props) => (
   <svg {...base} {...props}>
     <path d="M12 4v16M4 12h16" />
