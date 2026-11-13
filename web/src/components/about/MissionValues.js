@@ -17,7 +17,7 @@ export default function MissionValues() {
   return (
     <section className="section-pad bg-white">
       <div className="site-container">
-        <div className="mx-auto grid max-w-[1344px] gap-12 md:grid-cols-[5fr_6fr] md:gap-16">
+        <div className="grid gap-12 md:grid-cols-[5fr_6fr] md:gap-16">
           <div className="h-[360px] self-start overflow-hidden rounded-xl bg-surface md:sticky md:top-36 md:h-[560px]">
             <img
               src={PHOTO}

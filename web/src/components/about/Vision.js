@@ -66,7 +66,7 @@ export default function Vision() {
   return (
     <section className="section-pad bg-ink text-white">
       <div className="site-container">
-        <div className="mx-auto grid max-w-[1344px] items-center gap-14 md:grid-cols-2 md:gap-20">
+        <div className="grid items-center gap-14 md:grid-cols-2 md:gap-20">
           <div>
             <h2 className="section-title font-bold">Our vision</h2>
             <p className="mt-5 text-lg leading-relaxed text-white/75 md:text-xl">

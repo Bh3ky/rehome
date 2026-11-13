@@ -47,7 +47,7 @@ export default function HowWeWork() {
   return (
     <section className="section-pad bg-white">
       <div className="site-container">
-        <div className="mx-auto grid max-w-[1344px] gap-14 md:grid-cols-[5fr_7fr] md:gap-16">
+        <div className="grid gap-14 md:grid-cols-[5fr_7fr] md:gap-16">
           <div>
             <h2 className="section-title font-bold">How we work</h2>
 

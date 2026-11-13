@@ -8,7 +8,10 @@ export const SITE = {
   whatsappNumber: "263770000000",
   whatsappMessage: "Hi! I'd like to know more about ReHome.",
 
-  cities: ["Harare", "Bulawayo", "Mutare"],
+  cities: ["Harare", "Bulawayo", "Masvingo"],
+
+  // Placeholder: swap in the founder's video (YouTube video ID)
+  campaignsVideoId: "aqz-KE-bpKQ",
 
   copyrightYear: 2026,
   email: "hello@rehome.example",

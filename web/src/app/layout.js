@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={youngSerif.variable}>
       <body className="min-h-screen bg-white font-sans text-ink antialiased">
         <Header />
-        <main className="[@media(min-width:1024px)_and_(min-height:760px)]:relative [@media(min-width:1024px)_and_(min-height:760px)]:z-10 [@media(min-width:1024px)_and_(min-height:760px)]:bg-white">
+        <main className="[@media(min-width:1024px)_and_(min-height:760px)]:relative [@media(min-width:1024px)_and_(min-height:760px)]:z-10 [@media(min-width:1024px)_and_(min-height:760px)]:bg-white [@media(min-width:1024px)_and_(min-height:760px)]:min-h-svh">
           {children}
         </main>
         <FooterGate>
