@@ -1,5 +1,8 @@
 import { Young_Serif } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import FooterGate from "@/components/layout/FooterGate";
 import { SITE } from "@/config/site";
 
 const youngSerif = Young_Serif({
@@ -18,7 +21,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={youngSerif.variable}>
       <body className="min-h-screen bg-white font-sans text-ink antialiased">
-        {children}
+        <Header />
+        <main className="[@media(min-width:1024px)_and_(min-height:760px)]:relative [@media(min-width:1024px)_and_(min-height:760px)]:z-10 [@media(min-width:1024px)_and_(min-height:760px)]:bg-white">
+          {children}
+        </main>
+        <FooterGate>
+          <Footer />
+        </FooterGate>
       </body>
     </html>
   );
