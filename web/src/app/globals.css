@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --ink: #13251c;
+  --brand: #1f6b47;
+  --surface: #e4ebe7;
+  --green: #008c31; /* sampled from the logo */
+  --blue: #114fee; /* sampled from the logo */
+  --green-soft: #5fd98a; /* lighter green for accents on dark backgrounds */
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-brand: var(--brand);
+  --color-surface: var(--surface);
+  --color-green: var(--green);
+  --color-blue: var(--blue);
+  --color-green-soft: var(--green-soft);
+
+  /* Avenir Next ships with macOS/iOS only; other platforms fall back to their system sans */
+  --font-sans: "Avenir Next", Avenir, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-title: var(--font-sans);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Shared horizontal bounds so every section lines up with the header's logo and button */
+.site-container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1600px;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 768px) {
+  .site-container {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* One vertical rhythm for every content section */
+.section-pad {
+  padding-block: 3.5rem;
+}
+@media (min-width: 768px) {
+  .section-pad {
+    padding-block: 5rem;
+  }
+}
+
+/* Words light up one after another as --p (0 -> 1, set from Why.js) grows.
+   --s is the point where each word starts; --k is the fade speed (1 / fade window * 0.85). */
+.reveal-track {
+  --p: 0;
+  --k: 4.25;
+}
+.reveal-word {
+  opacity: clamp(0.15, calc(0.15 + (var(--p) - var(--s)) * var(--k)), 1);
+}
+
+.indent-first {
+  text-indent: clamp(3rem, 12vw, 7rem);
+}
+
+.hero-title {
+  font-size: clamp(2rem, 1.2rem + 2.6vw, 3.125rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.25rem);
+  line-height: 1.75;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 1.1rem + 2vw, 2.5rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+.animate-nudge {
+  animation: nudge 1.2s ease-in-out infinite;
+}
+
+@keyframes ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+.animate-ring {
+  animation: ring 1.8s ease-out infinite;
+}
+
+@keyframes city-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-city-in {
+  animation: city-in 0.45s ease-out both;
+}
+
+/* --p is the scroll progress (0 -> 1) set from HeroCollage.
+   The centre card interpolates from its collage size to the full viewport;
+   the side tiles are pushed off-screen by the flex row and fade out.
+   The negative top margin cancels the space above the vertically centred
+   card, so the collage's top edge peeks in at the bottom of the first screen. */
+.collage {
+  --p: 0;
+  --center-w: 78vw;
+  --center-h: 56svh;
+  --center-r: 24px;
+  margin-top: calc((100svh - var(--center-h)) / -2);
+}
+@media (min-width: 768px) {
+  .collage {
+    --center-w: 36vw;
+    --center-h: 87svh;
+    --center-r: 40px;
+  }
+}
+
+.collage-center {
+  will-change: width, height;
+  transform: translateZ(0);
+  width: calc(var(--center-w) + (100vw - var(--center-w)) * var(--p));
+  height: calc(var(--center-h) + (100svh - var(--center-h)) * var(--p));
+  border-radius: calc(var(--center-r) * (1 - var(--p)));
+}
+
+.collage-side {
+  opacity: calc(1 - var(--p) * 1.8);
+}
+
+@keyframes reveal {
+  0%,
+  12% {
+    clip-path: inset(0 100% 0 0);
+  }
+  50%,
+  88% {
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+.animate-reveal {
+  animation: reveal 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-nudge,
+  .animate-ring,
+  .animate-reveal,
+  .animate-city-in {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
