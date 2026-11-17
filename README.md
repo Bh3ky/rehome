@@ -40,6 +40,7 @@ The other pages:
 - **Campaign detail:** story, a live progress tracker that stays in view while you scroll, and a photo collage
 - **Offer an item** and **Apply as a hub:** split-screen forms that save to Supabase
 - **Contact:** details and social links
+- **Admin** (`/admin`, sign-in only): a dashboard, lists of offers and hub applications with status filters, a detail page with photos and status changes, and a settings page showing the profile
 
 ## Tech stack
 
@@ -83,7 +84,17 @@ The forms need a Supabase project.
 2. In the dashboard, open **SQL Editor**, paste the contents of [`supabase/schema.sql`](supabase/schema.sql) and run it. It creates the tables, the security rules (visitors can only add rows, never read them) and two private photo buckets.
 3. Copy `web/.env.example` to `web/.env.local` and fill in the project URL and the publishable key (Project Settings, then API). Restart the dev server.
 
-Submissions are reviewed in the Supabase dashboard (Table Editor and Storage).
+### Set up the admin
+
+The admin is invite-only and signs in with an emailed link.
+
+1. In the SQL Editor, run [`supabase/admin.sql`](supabase/admin.sql). It adds the list of admin emails and lets those people read submissions and change their status.
+2. Add yourself as an admin: `insert into public.admins (email) values ('you@example.com');`
+3. Under **Authentication, Users**, add the same email as a user and tick auto-confirm.
+4. Under **Authentication, URL Configuration**, set the Site URL (`http://localhost:3000` while developing) and add `<Site URL>/**` to the Redirect URLs.
+5. Open `/admin` and ask for a sign-in link.
+
+Supabase's built-in email sender only emails members of the Supabase project and allows 2 emails an hour. Before going live, set up custom SMTP (for example Resend) in **Authentication, Emails**. Open each link in the browser that asked for it.
 
 ## Project structure
 
@@ -92,11 +103,11 @@ REHOME/
 ├── supabase/        Database schema, security rules and photo buckets
 ├── web/             The Next.js app
 │   ├── public/      Logo and placeholder partner logos
-│   ├── src/app/     Layout, global styles and the routes (offer and for-hubs hold their Server Actions)
+│   ├── src/app/     Layout, global styles and the routes (public pages are in the `(site)` group, the admin is in `admin`; offer and for-hubs hold their Server Actions)
 │   ├── src/components/  One folder per page or area, plus layout and ui
 │   ├── src/config/  Site name, nav, contact details
 │   ├── src/data/    Placeholder campaigns, FAQ, impact stats, form options
-│   ├── src/lib/     Supabase client and the browser photo upload
+│   ├── src/lib/     Supabase clients, admin data loading and the browser photo upload
 │   └── tests/       Playwright layout checks (not yet runnable, see below)
 └── README.md
 ```
@@ -115,7 +126,8 @@ Layout and spacing checks are written with Playwright in `web/tests/`, but `@pla
 ## Roadmap
 
 - Build the remaining pages: transformations, guidelines, privacy and terms
-- Move campaigns and updates into Supabase, and add an admin view for reviewing submissions
+- Move campaigns and updates into Supabase
+- Admin: search, CSV export, a mobile menu, names instead of emails, and a custom domain such as `admin.<domain>`
 - Connect Sanity for hub and transformation stories
 - Email notifications with Resend
 - Choose the final name and replace the placeholder content and imagery
