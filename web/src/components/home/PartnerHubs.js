@@ -5,7 +5,7 @@ export default function PartnerHubs() {
   return (
     <section className="section-pad bg-white">
       <div className="site-container">
-        <ul className="grid grid-cols-3 items-center justify-items-center gap-x-6 gap-y-10 lg:flex lg:justify-between">
+        <ul className="grid grid-cols-3 items-center justify-items-center gap-x-6 gap-y-10 md:flex md:justify-between">
           {PARTNER_HUBS.map((hub) => (
             <li key={hub.name}>
               <Image

@@ -42,7 +42,7 @@ export default function Footer() {
   return (
     <footer className="flex flex-col bg-ink text-white [@media(min-width:1024px)_and_(min-height:760px)]:fixed [@media(min-width:1024px)_and_(min-height:760px)]:inset-x-0 [@media(min-width:1024px)_and_(min-height:760px)]:bottom-0 [@media(min-width:1024px)_and_(min-height:760px)]:z-0 [@media(min-width:1024px)_and_(min-height:760px)]:h-svh">
       <div className="site-container pt-12 [@media(min-width:1024px)_and_(min-height:760px)]:pt-36">
-        <div className="grid gap-12 lg:grid-cols-[1.9fr_1fr_1fr_1.2fr] lg:gap-10">
+        <div className="grid gap-12 md:grid-cols-[1.9fr_1fr_1fr_1.2fr] md:gap-10">
           <div>
             <p className={heading}>{SITE.name}</p>
             <p className="mt-6 max-w-md text-[28px] leading-[1.25] text-white/70 md:text-[34px]">

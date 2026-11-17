@@ -36,7 +36,7 @@ export default function CampaignTracker({ campaign, className = "" }) {
   return (
     <aside
       aria-label="Progress"
-      className={`lg:sticky lg:top-36 lg:self-start ${className}`}
+      className={`md:sticky md:top-36 md:self-start ${className}`}
     >
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold">Progress</h2>

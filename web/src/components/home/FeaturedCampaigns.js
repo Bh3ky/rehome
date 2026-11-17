@@ -10,7 +10,7 @@ import { getActiveCampaigns } from "@/data/campaigns";
 const INTRO_PHOTO =
   "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?auto=format&fit=crop&w=900&q=70";
 
-const TILE = "h-full w-[85%] shrink-0 snap-start lg:w-[calc(100%-80px)]";
+const TILE = "h-full w-[85%] shrink-0 snap-start md:w-[calc(100%-80px)]";
 
 function ArrowLeft(props) {
   return <ArrowRight {...props} className={`rotate-180 ${props.className ?? ""}`} />;
@@ -38,8 +38,8 @@ export default function FeaturedCampaigns() {
   return (
     <section id="campaigns" className="section-pad scroll-mt-28 bg-white">
       <div className="site-container">
-        <div className="grid gap-5 lg:h-[620px] lg:grid-cols-[1fr_3fr]">
-          <div className="relative h-[300px] overflow-hidden rounded-[28px] bg-surface lg:h-full">
+        <div className="grid gap-5 md:h-[620px] md:grid-cols-[1fr_3fr]">
+          <div className="relative h-[300px] overflow-hidden rounded-[28px] bg-surface md:h-full">
             <img
               src={INTRO_PHOTO}
               alt=""
@@ -80,7 +80,7 @@ export default function FeaturedCampaigns() {
 
           <div
             ref={scrollerRef}
-            className="flex h-[560px] min-w-0 snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth motion-reduce:scroll-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:h-full"
+            className="flex h-[560px] min-w-0 snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth motion-reduce:scroll-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:h-full"
           >
             {campaigns.map((c) => (
               <Link

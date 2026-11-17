@@ -20,8 +20,8 @@ export default function CampaignDetail({ campaign }) {
           {campaign.hub} · {campaign.city}
         </p>
 
-        <div className="mt-8 grid gap-y-16 lg:grid-cols-[1fr_360px] lg:gap-x-16">
-          <div className="aspect-video overflow-hidden rounded-xl bg-surface lg:col-start-1">
+        <div className="mt-8 grid gap-y-16 md:grid-cols-[1fr_clamp(240px,32%,360px)] md:gap-x-16">
+          <div className="aspect-video overflow-hidden rounded-xl bg-surface md:col-start-1">
             <img
               src={campaign.photo}
               alt=""
@@ -31,10 +31,10 @@ export default function CampaignDetail({ campaign }) {
 
           <CampaignTracker
             campaign={campaign}
-            className="lg:col-start-2 lg:row-span-3 lg:row-start-1"
+            className="md:col-start-2 md:row-span-3 md:row-start-1"
           />
 
-          <div className="lg:col-start-1">
+          <div className="md:col-start-1">
             <h2 className="section-title font-bold">Campaign overview</h2>
             <div className="mt-5 flex flex-col gap-5 text-lg leading-relaxed text-ink md:text-xl">
               {campaign.story.map((paragraph) => (
@@ -59,7 +59,7 @@ export default function CampaignDetail({ campaign }) {
 
           <ul
             aria-label="Campaign photos"
-            className="grid grid-cols-3 gap-3 lg:col-start-1"
+            className="grid grid-cols-3 gap-3 md:col-start-1"
           >
             {gallery.map((src) => (
               <li

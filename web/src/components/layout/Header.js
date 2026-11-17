@@ -87,7 +87,7 @@ export default function Header() {
         <div className="site-container flex h-24 items-center justify-between md:h-28">
           <Logo />
 
-          <ul className="hidden items-center gap-8 lg:flex">
+          <ul className="hidden items-center gap-8 min-[1024px]:flex">
             {NAV_LINKS.map((link) =>
               link.dropdown ? (
                 <li
@@ -180,7 +180,7 @@ export default function Header() {
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen((o) => !o)}
-              className="grid h-11 w-11 place-items-center rounded-xl hover:bg-black/5 lg:hidden"
+              className="grid h-11 w-11 place-items-center rounded-xl hover:bg-black/5 min-[1024px]:hidden"
             >
               {mobileOpen ? <Close /> : <Menu />}
             </button>
@@ -188,7 +188,7 @@ export default function Header() {
         </div>
 
         {mobileOpen && (
-          <div className="max-h-[calc(100svh-6rem)] overflow-y-auto border-t border-black/5 bg-white px-5 pb-6 pt-2 lg:hidden">
+          <div className="max-h-[calc(100svh-6rem)] overflow-y-auto border-t border-black/5 bg-white px-5 pb-6 pt-2 min-[1024px]:hidden">
             <ul className="flex flex-col">
               {NAV_LINKS.map((link) =>
                 link.dropdown ? (
