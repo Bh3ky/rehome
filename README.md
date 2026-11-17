@@ -10,7 +10,7 @@ This is a portfolio project: a full-featured proof of concept built ahead of com
 
 ## Status
 
-The **homepage is complete**. Other pages (campaigns, offer an item, transformations, for hubs, about) are planned and not built yet, so some links currently lead to 404s. Supabase, Sanity and Resend are planned but not wired in.
+Built: the homepage, About, Campaigns (list and detail), Offer, For hubs and Contact pages. The offer and hub application forms save to Supabase. Still to build: Transformations, Guidelines, Privacy and Terms, so a few nav and footer links still lead to 404s. Sanity and Resend are planned but not wired in.
 
 ## How it works
 
@@ -33,6 +33,14 @@ The homepage, section by section:
 - **Partner hubs**, **For hubs** and **FAQ**
 - **Footer** that is revealed from underneath the page
 
+The other pages:
+
+- **About:** story, mission and values, vision (with a photo-filled clover), how we work
+- **Campaigns:** a video hero, campaign cards grouped by city, and a latest-updates board
+- **Campaign detail:** story, a live progress tracker that stays in view while you scroll, and a photo collage
+- **Offer an item** and **Apply as a hub:** split-screen forms that save to Supabase
+- **Contact:** details and social links
+
 ## Tech stack
 
 | Layer | Choice | State |
@@ -40,7 +48,7 @@ The homepage, section by section:
 | Framework | Next.js 16 (App Router), React 19, plain JavaScript | In use |
 | Styling | Tailwind CSS v4 | In use |
 | Fonts | Avenir Next (system font) for the site; Young Serif for the footer wordmark | In use |
-| Database, auth, storage | Supabase | Installed, not wired |
+| Database and photo storage | Supabase | In use: offers and hub applications |
 | Stories content | Sanity | Planned |
 | Email | Resend | Installed, not wired |
 | Messaging | WhatsApp click-to-chat links | In use |
@@ -67,21 +75,28 @@ Then open <http://localhost:3000>.
 | `npm run start` | Serve the production build |
 | `npm run lint` | Run ESLint |
 
-No environment variables are needed yet. They will be documented here once Supabase and Resend are connected.
+### Connect Supabase
+
+The forms need a Supabase project.
+
+1. Create a project at [supabase.com](https://supabase.com).
+2. In the dashboard, open **SQL Editor**, paste the contents of [`supabase/schema.sql`](supabase/schema.sql) and run it. It creates the tables, the security rules (visitors can only add rows, never read them) and two private photo buckets.
+3. Copy `web/.env.example` to `web/.env.local` and fill in the project URL and the publishable key (Project Settings, then API). Restart the dev server.
+
+Submissions are reviewed in the Supabase dashboard (Table Editor and Storage).
 
 ## Project structure
 
 ```
 REHOME/
+├── supabase/        Database schema, security rules and photo buckets
 ├── web/             The Next.js app
 │   ├── public/      Logo and placeholder partner logos
-│   ├── src/app/     Layout, global styles, homepage route
-│   ├── src/components/
-│   │   ├── home/    One component per homepage section
-│   │   ├── layout/  Header, footer, logo
-│   │   └── ui/      Button, icons, count-up
+│   ├── src/app/     Layout, global styles and the routes (offer and for-hubs hold their Server Actions)
+│   ├── src/components/  One folder per page or area, plus layout and ui
 │   ├── src/config/  Site name, nav, contact details
-│   ├── src/data/    Placeholder campaigns, FAQ, impact stats
+│   ├── src/data/    Placeholder campaigns, FAQ, impact stats, form options
+│   ├── src/lib/     Supabase client and the browser photo upload
 │   └── tests/       Playwright layout checks (not yet runnable, see below)
 └── README.md
 ```
@@ -99,8 +114,8 @@ Layout and spacing checks are written with Playwright in `web/tests/`, but `@pla
 
 ## Roadmap
 
-- Build the remaining pages: campaigns, offer an item, transformations, for hubs, about
-- Connect Supabase for campaigns, offers and the admin review queue
+- Build the remaining pages: transformations, guidelines, privacy and terms
+- Move campaigns and updates into Supabase, and add an admin view for reviewing submissions
 - Connect Sanity for hub and transformation stories
 - Email notifications with Resend
 - Choose the final name and replace the placeholder content and imagery
