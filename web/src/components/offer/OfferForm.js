@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { submitOffer } from "@/app/offer/actions";
+import { submitOffer } from "@/app/(site)/offer/actions";
 import { CATEGORIES, CONDITIONS } from "@/data/forms";
 import { uploadPhotos } from "@/lib/uploadPhotos";
 

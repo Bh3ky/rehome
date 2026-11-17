@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { submitHubApplication } from "@/app/for-hubs/actions";
+import { submitHubApplication } from "@/app/(site)/for-hubs/actions";
 import { HUB_TYPES } from "@/data/forms";
 import { uploadPhotos } from "@/lib/uploadPhotos";
 
