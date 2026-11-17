@@ -1,24 +1,38 @@
 "use client";
 
+import { useState } from "react";
+import { submitOffer } from "@/app/offer/actions";
+import { CATEGORIES, CONDITIONS } from "@/data/forms";
+import { uploadPhotos } from "@/lib/uploadPhotos";
+
 const field =
   "w-full rounded-xl border border-ink/20 bg-white px-4 py-2.5 text-base outline-none transition-colors focus:border-ink";
 const label = "flex flex-col gap-1.5 text-sm font-medium";
 
-const CATEGORIES = [
-  "Art",
-  "Craft",
-  "Furniture",
-  "Textile",
-  "Cultural piece",
-  "Creative materials",
-  "Other",
-];
-
-const CONDITIONS = ["Excellent", "Good", "Fair"];
-
 export default function OfferForm({ campaigns, defaultCampaign = "" }) {
-  // Submission is wired to Supabase next; until then the form only validates.
-  const onSubmit = (event) => event.preventDefault();
+  const [status, setStatus] = useState({ state: "idle", message: "" });
+
+  async function onSubmit(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    setStatus({ state: "sending", message: "" });
+
+    try {
+      const files = data.getAll("photos").filter((file) => file.size > 0);
+      const paths = await uploadPhotos("offer-photos", files);
+      data.delete("photos");
+      data.set("photoPaths", JSON.stringify(paths));
+
+      const result = await submitOffer(data);
+      if (!result.ok) throw new Error(result.message);
+
+      form.reset();
+      setStatus({ state: "done", message: "Thank you. We'll be in touch." });
+    } catch (error) {
+      setStatus({ state: "error", message: error.message });
+    }
+  }
 
   return (
     <form
@@ -27,7 +41,7 @@ export default function OfferForm({ campaigns, defaultCampaign = "" }) {
     >
       <label className={`${label} sm:col-span-2`}>
         Item name
-        <input name="item" type="text" required className={field} />
+        <input name="item" type="text" required maxLength={200} className={field} />
       </label>
 
       <label className={label}>
@@ -75,7 +89,7 @@ export default function OfferForm({ campaigns, defaultCampaign = "" }) {
         <input
           name="photos"
           type="file"
-          accept="image/*"
+          accept="image/jpeg,image/png,image/webp"
           multiple
           required
           className={`${field} file:mr-4 file:rounded-lg file:border-0 file:bg-ink file:px-4 file:py-2 file:text-sm file:font-medium file:text-white`}
@@ -88,6 +102,7 @@ export default function OfferForm({ campaigns, defaultCampaign = "" }) {
           name="size"
           type="text"
           placeholder="e.g. 60 x 90 cm"
+          maxLength={100}
           className={field}
         />
       </label>
@@ -99,6 +114,7 @@ export default function OfferForm({ campaigns, defaultCampaign = "" }) {
           type="text"
           placeholder="Suburb, city"
           required
+          maxLength={200}
           className={field}
         />
       </label>
@@ -109,26 +125,39 @@ export default function OfferForm({ campaigns, defaultCampaign = "" }) {
           name="notes"
           rows={2}
           placeholder="Any meaning, or conditions on how it should be displayed"
+          maxLength={2000}
           className={field}
         />
       </label>
 
       <label className={label}>
         Your name
-        <input name="name" type="text" required className={field} />
+        <input name="name" type="text" required maxLength={120} className={field} />
       </label>
 
       <label className={label}>
         Email or phone
-        <input name="contact" type="text" required className={field} />
+        <input name="contact" type="text" required maxLength={200} className={field} />
       </label>
 
       <button
         type="submit"
-        className="rounded-xl bg-ink px-6 py-3 text-base font-medium text-white transition-colors hover:bg-ink/90 sm:col-span-2"
+        disabled={status.state === "sending"}
+        className="rounded-xl bg-ink px-6 py-3 text-base font-medium text-white transition-colors hover:bg-ink/90 disabled:opacity-60 sm:col-span-2"
       >
-        Submit
+        {status.state === "sending" ? "Sending…" : "Submit"}
       </button>
+
+      {status.message && (
+        <p
+          role={status.state === "error" ? "alert" : "status"}
+          className={`text-sm font-medium sm:col-span-2 ${
+            status.state === "error" ? "text-red-700" : "text-green"
+          }`}
+        >
+          {status.message}
+        </p>
+      )}
     </form>
   );
 }
