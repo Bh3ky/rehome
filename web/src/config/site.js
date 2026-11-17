@@ -17,6 +17,8 @@ export const SITE = {
   email: "hello@rehome.example",
   phoneDisplay: "+263 77 000 0000",
   location: "Harare, Zimbabwe",
+  address: ["12 Example Road", "Harare, Zimbabwe"],
+  hours: ["8AM – 4PM", "Closed on weekends"],
 };
 
 export const FOOTER_NAV = [
@@ -35,6 +37,15 @@ export const FOOTER_INVOLVED = [
 
 export const whatsappLink = (message = SITE.whatsappMessage) =>
   `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+// Placeholder profile links
+export const SOCIALS = [
+  { key: "whatsapp", label: "WhatsApp", href: whatsappLink() },
+  { key: "instagram", label: "Instagram", href: "https://instagram.com" },
+  { key: "facebook", label: "Facebook", href: "https://facebook.com" },
+  { key: "linkedin", label: "LinkedIn", href: "https://linkedin.com" },
+  { key: "x", label: "X", href: "https://x.com" },
+];
 
 export const REHOME_CTA = { label: "ReHome", href: "/offer" };
 
