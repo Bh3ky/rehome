@@ -1,0 +1,31 @@
+/* eslint-disable @next/next/no-img-element */
+import HubForm from "@/components/hubs/HubForm";
+import DarkTopMarker from "@/components/offer/DarkTopMarker";
+
+const PHOTO =
+  "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1400&q=75";
+
+export default function HubSection() {
+  return (
+    <section className="grid md:h-svh md:grid-cols-2 md:grid-rows-[minmax(0,1fr)]">
+      <DarkTopMarker />
+
+      <div className="flex items-center justify-center bg-ink px-5 pb-10 pt-40 md:px-10 md:pb-20 md:pt-48">
+        <div className="w-full max-w-[520px] rounded-2xl border border-ink/15 bg-white p-6 md:max-h-full md:overflow-y-auto md:p-8">
+          <h1 className="section-title font-bold">Apply as a hub</h1>
+          <div className="mt-6">
+            <HubForm />
+          </div>
+        </div>
+      </div>
+
+      <div className="relative min-h-[320px] bg-ink">
+        <img
+          src={PHOTO}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </div>
+    </section>
+  );
+}
