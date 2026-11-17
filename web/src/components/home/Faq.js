@@ -10,7 +10,7 @@ export default function Faq() {
 
   return (
     <section id="faq" className="section-pad scroll-mt-28 bg-white">
-      <div className="site-container grid gap-12 pb-16 md:pb-36 lg:grid-cols-[5fr_7fr] lg:gap-20">
+      <div className="site-container grid gap-12 pb-16 md:pb-36 md:grid-cols-[5fr_7fr] md:gap-20">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-green">
             FAQ

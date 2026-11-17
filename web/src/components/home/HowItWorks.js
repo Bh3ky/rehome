@@ -53,8 +53,8 @@ export default function HowItWorks() {
   return (
     <section id="how-it-works" className="section-pad scroll-mt-28 bg-white">
       <div className="site-container">
-        <div className="grid gap-5 lg:h-[620px] lg:grid-cols-[1fr_3fr]">
-          <div className="relative h-[300px] overflow-hidden rounded-[28px] bg-surface lg:h-full">
+        <div className="grid gap-5 md:h-[620px] md:grid-cols-[1fr_3fr]">
+          <div className="relative h-[300px] overflow-hidden rounded-[28px] bg-surface md:h-full">
             <img
               src={INTRO_PHOTO}
               alt=""
@@ -77,7 +77,7 @@ export default function HowItWorks() {
             </div>
           </div>
 
-          <div className="relative h-[560px] overflow-hidden rounded-[28px] bg-surface lg:h-full">
+          <div className="relative h-[560px] overflow-hidden rounded-[28px] bg-surface md:h-full">
             <div
               className="flex h-full transition-transform duration-500 ease-out motion-reduce:transition-none"
               style={{ transform: `translateX(-${index * 100}%)` }}

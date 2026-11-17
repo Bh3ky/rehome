@@ -10,11 +10,11 @@ export default function OfferSection({ defaultCampaign = "" }) {
   const campaigns = getActiveCampaigns();
 
   return (
-    <section className="grid lg:h-svh lg:grid-cols-2 lg:grid-rows-[minmax(0,1fr)]">
+    <section className="grid md:h-svh md:grid-cols-2 md:grid-rows-[minmax(0,1fr)]">
       <DarkTopMarker />
 
-      <div className="flex items-center justify-center bg-ink px-5 pb-10 pt-40 md:px-10 lg:pb-20 lg:pt-48">
-        <div className="w-full max-w-[520px] rounded-2xl border border-ink/15 bg-white p-6 md:p-8 lg:max-h-full lg:overflow-y-auto">
+      <div className="flex items-center justify-center bg-ink px-5 pb-10 pt-40 md:px-10 md:pb-20 md:pt-48">
+        <div className="w-full max-w-[520px] rounded-2xl border border-ink/15 bg-white p-6 md:p-8 md:max-h-full md:overflow-y-auto">
           <h1 className="section-title font-bold">Offer an item</h1>
           <div className="mt-6">
             <OfferForm
