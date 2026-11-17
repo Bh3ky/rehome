@@ -23,7 +23,7 @@ const link = "underline-offset-4 hover:underline";
 export default function ContactDetails() {
   return (
     <div className="overflow-hidden">
-      <SlideUp className="min-h-svh bg-white pb-24 pt-40 lg:pt-48">
+      <SlideUp className="min-h-svh bg-white pb-24 pt-40 md:pt-48">
         <div className="site-container">
           <h1 className="sr-only">Contact us</h1>
 
