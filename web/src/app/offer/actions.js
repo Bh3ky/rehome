@@ -2,11 +2,8 @@
 
 import { getCampaign } from "@/data/campaigns";
 import { CATEGORIES, CONDITIONS } from "@/data/forms";
-import { MAX_PHOTOS } from "@/lib/uploadPhotos";
+import { MAX_PHOTOS, PHOTO_PATH } from "@/lib/uploadPhotos";
 import { getSupabase } from "@/lib/supabase";
-
-const PHOTO_PATH =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\/[1-9]\.(jpeg|png|webp)$/;
 
 const text = (formData, name) => String(formData.get(name) ?? "").trim();
 

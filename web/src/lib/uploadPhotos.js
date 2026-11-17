@@ -1,6 +1,8 @@
 import { getSupabase } from "@/lib/supabase";
 
 export const MAX_PHOTOS = 6;
+export const PHOTO_PATH =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\/[1-9]\.(jpeg|png|webp)$/;
 const MAX_BYTES = 5 * 1024 * 1024;
 const EXTENSIONS = { "image/jpeg": "jpeg", "image/png": "png", "image/webp": "webp" };
 
